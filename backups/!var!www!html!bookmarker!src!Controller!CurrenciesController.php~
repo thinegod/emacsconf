@@ -1,0 +1,84 @@
+<?php
+namespace App\Controller;
+
+use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\Controller\Component\RequestHandlerComponent;
+/**
+ * Currencies Controller
+ *
+ * @property \App\Model\Table\CurrenciesTable $Currencies
+ */
+class CurrenciesController extends AppController
+{
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+        $this->set('currencies', $this->paginate($this->Currencies));
+        $this->set('allCurrencies',$this->Currencies->find());
+        $this->set('_serialize', ['allCurrencies']);
+        
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Currency id.
+     * @return void
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $currency = $this->Currencies->get($id, [
+            'contain' => []
+        ]);
+        $this->set('currency', $currency);
+        $this->set('_serialize', ['currency']);
+    }
+
+    /**
+     *
+     * Updates all the currencies.
+     *
+     * @return void
+     *
+     **/
+    public function updateCurrencies()
+    {
+        $this->Currencies->updateCurrencies();
+        $this->renderCurrencyContent();
+    }
+
+    /**
+     * Clear all the currencies.
+     *
+     * @return void
+     **/
+    public function clearCurrencies()
+    {
+        $this->Currencies->clear();
+        $this->renderCurrencyContent();
+    }
+    /**
+     * Renders the ajax response for currencies.
+     *
+     * @return void
+     **/
+    private function renderCurrencyContent()
+    {
+        $this->set('currencies', $this->paginate($this->Currencies));
+        $this->layout = "ajax";
+        $this->render('/Element/currencyContent');
+    }
+
+}

@@ -1,0 +1,108 @@
+<?php
+namespace App\Model\Table;
+
+use App\Model\Entity\Currency;
+use Cake\ORM\Query;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
+use Cake\Network\Http\Client;
+use Cake\Collection\Collection;
+
+/**
+ * Currencies Model
+ *
+ */
+class CurrenciesTable extends Table
+{
+    const appId = "0037c152241f4a4ab473ed086e5cdb74";
+
+    /**
+     * Initialize method
+     *
+     * @param array $config The configuration for the Table.
+     * @return void
+     */
+    public function initialize(array $config)
+    {
+        $this->table('currencies');
+        $this->displayField('name');
+        $this->primaryKey('id');
+    }
+
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('id', 'create');
+            
+        $validator
+            ->allowEmpty('iso_4217');
+            
+        $validator
+            ->allowEmpty('name');
+            
+        $validator
+            ->allowEmpty('date_created');
+            
+        $validator
+            ->add('date_modified', 'valid', ['rule' => 'datetime'])
+            ->allowEmpty('date_modified');
+            
+        $validator
+            ->add('rate', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('rate');
+
+        return $validator;
+    }
+
+
+    /**
+     * Clears the table.
+     *
+     * @return void
+     **/
+    public function clear()
+    {
+        $this->deleteAll(array('1 = 1'));
+    }
+
+    /**
+     * Fetches currencies.
+     *
+     * @return array
+     **/
+    public function fetchCurrencies()
+    {
+        $client = new Client();
+        $list =  array();
+        //consider adding error handling to this.
+        $resp = $client->get("https://openexchangerates.org/api/latest.json?app_id=".self::appId);
+        $i=0;
+        foreach($resp->json['rates'] as $iso => $rate)
+        {
+            $list[]=new Currency(["id" => $i++, "iso_4217" => $iso, "rate" => $rate]);
+        }
+        return new Collection($list);
+    }
+
+    /**
+     * Updates all currencies.
+     * @return void
+     **/
+    public function updateCurrencies()
+    {
+        $this->fetchCurrencies()->each(function(Currency $currency)
+        {
+            $this->save($currency); 
+        });
+    }
+
+    
+}

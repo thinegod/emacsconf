@@ -1,0 +1,8 @@
+;;; -*- coding: utf-8 -*-
+(("/etc/apache2/sites-available/000-default.conf" . 628)
+ ("/home/magnus/.emacs.d/customizations/editing.el" . 2322)
+ ("/home/magnus/.emacs.d/customizations/navigation.el" . 1923)
+ ("/home/magnus/.emacs.d/customizations/ui.el" . 545)
+ ("/home/magnus/.emacs.d/init.el" . 3338)
+ ("/home/magnus/clojure/app/src/app/core.clj" . 54)
+ ("/home/magnus/thygod/configurator_V2/models.py" . 130))

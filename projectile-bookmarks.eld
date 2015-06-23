@@ -1,0 +1,1 @@
+("/var/www/html/dri_test/" "/var/www/html/bookmarker/" "/var/www/html/app_name/" "~/clojure/app/")
