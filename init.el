@@ -98,8 +98,10 @@
 (add-to-list 'load-path "~/.emacs.d/vendor")
 (add-to-list 'load-path "~/.emacs.d/elm-mode")
 (add-to-list 'load-path "~/.emacs.d/php-mode")
+(add-to-list 'load-path "~/.emacs.d/coffee-mode")
 (require 'php-mode)
 (require 'elm-mode)
+(require 'coffee-mode)
 
 
 ;;;;
