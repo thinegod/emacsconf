@@ -103,6 +103,7 @@
 (require 'php-mode)
 (require 'elm-mode)
 (require 'coffee-mode)
+(require 'web-mode)
 
 
 
