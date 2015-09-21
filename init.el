@@ -99,9 +99,12 @@
 (add-to-list 'load-path "~/.emacs.d/elm-mode")
 (add-to-list 'load-path "~/.emacs.d/php-mode")
 (add-to-list 'load-path "~/.emacs.d/coffee-mode")
+(add-to-list 'load-path "~/.emacs.d/web-mode")
 (require 'php-mode)
 (require 'elm-mode)
 (require 'coffee-mode)
+
+
 
 
 ;;;;
