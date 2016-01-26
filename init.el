@@ -100,10 +100,12 @@
 (add-to-list 'load-path "~/.emacs.d/php-mode")
 (add-to-list 'load-path "~/.emacs.d/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/web-mode")
+(add-to-list 'load-path "~/.emacs.d/dockerfile-mode")
 (require 'php-mode)
 (require 'elm-mode)
 (require 'coffee-mode)
 (require 'web-mode)
+(require 'dockerfile-mode)
 
 
 
