@@ -149,9 +149,9 @@
 (load "setup-clojure.el")
 (load "setup-js.el")
 
-;; (require 'erc-join)             ; autojoin support is implemented by erc-join.el
-;; (erc-autojoin-enable)           ; enable channel autojoin support, by default
 
+;; rp irc
+(load "rp-irc-setup.el")
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

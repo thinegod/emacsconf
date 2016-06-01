@@ -8,3 +8,4 @@ ido.last
 session.*
 tramp
 .smex-items
+customizations/rp-irc-setup.el

@@ -1,5 +1,0 @@
-<?php foreach($currencies as $currency): ?>
-
-<option><?= $currency->iso_4217 ?> </option>
-<?php endforeach; ?>
-
