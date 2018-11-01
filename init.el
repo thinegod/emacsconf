@@ -15,7 +15,11 @@
 ;;                          ("marmalade" . "http://marmalade-repo.org/packages/")
 ;;                          ("melpa" . "http://melpa-stable.milkbox.net/packages/")))
 
-
+(defvar ido-cur-item nil)
+(defvar ido-default-item nil)
+(defvar ido-cur-list nil)
+(defvar predicate nil)
+(defvar inherit-input-method nil)
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
 ;; This also sets the load path.
@@ -35,16 +39,16 @@
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
 
-    ;; key bindings and code colorization for Clojure
-    ;; https://github.com/clojure-emacs/clojure-mode
-    clojure-mode
+    ;; ;; key bindings and code colorization for Clojure
+    ;; ;; https://github.com/clojure-emacs/clojure-mode
+    ;; clojure-mode
 
-    ;; extra syntax highlighting for clojure
-    clojure-mode-extra-font-locking
+    ;; ;; extra syntax highlighting for clojure
+    ;; clojure-mode-extra-font-locking
 
-    ;; integration with a Clojure REPL
-    ;; https://github.com/clojure-emacs/cider
-    cider
+    ;; ;; integration with a Clojure REPL
+    ;; ;; https://github.com/clojure-emacs/cider
+    ;; cider
 
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
@@ -101,16 +105,19 @@
 (add-to-list 'load-path "~/.emacs.d/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/web-mode")
 (add-to-list 'load-path "~/.emacs.d/dockerfile-mode")
+(add-to-list 'load-path "~/.emacs.d/log4j-mode")
 (require 'php-mode)
 (require 'elm-mode)
 (require 'coffee-mode)
 (require 'web-mode)
 (require 'dockerfile-mode)
+(require 'log4j-mode)
 
 (add-to-list 'auto-mode-alist '("\\.ftl$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.log$" . auto-revert-tail-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.log$" . read-only-mode))
-(add-to-list 'auto-mode-alist '("\\.out$" . auto-revert-tail-mode))
+(add-to-list 'auto-mode-alist '("\\.out$" . log4j-mode))
+;;(add-to-list 'auto-mode-alist '("\\.out$" . auto-revert-tail-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.out$" . read-only-mode))
 
 
@@ -151,7 +158,7 @@
 
 
 ;; rp irc
-(load "rp-irc-setup.el")
+;;(load "rp-irc-setup.el")
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
